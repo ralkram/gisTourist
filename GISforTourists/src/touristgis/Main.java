@@ -3,6 +3,7 @@ package touristgis;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -13,7 +14,7 @@ import touristgis.places.PlaceManager;
 
 public class Main {
 
-  private static TouristMap testMap = new TouristMap("", "sanfrancisco.tpk");
+  private static TouristMap testMap = new TouristMap("", "resources/sanfrancisco.tpk");
 
   public JComponent createUI() throws Exception {
     JComponent contentPane = testMap.getMapGUI();
@@ -21,7 +22,7 @@ public class Main {
     return contentPane;
   }
 
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args) throws InterruptedException, ClassNotFoundException, IOException {
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {

@@ -15,19 +15,16 @@ import com.esri.map.JMap;
  *
  */
 public abstract class Place extends MapPoint implements Serializable {
+
   /**
-     *
-     */
+    * 
+    */
+  private static final long serialVersionUID = 1L;
+
   private final String iconImageLocation;
 
-  /**
-     *
-     */
-  private final Set<String> placeImageLocations;
+  private String placeImageLocation;
 
-  /**
-     *
-     */
   private String name;
 
   /**
@@ -38,25 +35,16 @@ public abstract class Place extends MapPoint implements Serializable {
    */
   public Place(String name, String iconImageLocation, Double latitude, Double longitude) {
     super(latitude, longitude);
-
     this.iconImageLocation = iconImageLocation;
     this.name = name;
-    this.placeImageLocations = new HashSet<String>();
-
   }
 
-  /**
-   * @return
-   */
-  protected Set<String> getPlaceImageLocations() {
-    return new HashSet<String>(placeImageLocations);
+  public String getPlaceImageLocation() {
+    return placeImageLocation;
   }
 
-  /**
-   * @param placeImageLocation
-   */
-  public void addPlaceImageLocation(String placeImageLocation) {
-    placeImageLocations.add(placeImageLocation);
+  public void setPlaceImageLocation(String placeImageLocation) {
+    this.placeImageLocation = placeImageLocation;
   }
 
   /**
@@ -82,13 +70,11 @@ public abstract class Place extends MapPoint implements Serializable {
     try {
 
       URL url = Place.class.getProtectionDomain().getCodeSource().getLocation();
-      System.out.println(url.toString());
       imageMarker = ImageIO.read(new URL(url.toString() + iconImageLocation));
     }
     catch (IOException e) {
       e.printStackTrace();
     }
-
-    map.addMarkerGraphic(latitude, longitude, name, getDescription(), null, null, imageMarker);
+    map.addMarkerGraphic(latitude, longitude, name, getDescription(), placeImageLocation, null, imageMarker);
   }
 }

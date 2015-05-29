@@ -1,11 +1,13 @@
 package touristgis.places;
 
+import java.io.Serializable;
+
 import com.esri.map.JMap;
 
 /**
  *
  */
-public abstract class MapPoint {
+public abstract class MapPoint implements Serializable {
   /**
      *
      */

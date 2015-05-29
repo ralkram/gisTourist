@@ -6,7 +6,7 @@ import touristgis.places.Place;
  *
  */
 public class Institution extends Place {
-  private static String institutionIconImageLocation = "institution.png";
+  private static String institutionIconImageLocation = "resources/institution.png";
 
   /**
      *

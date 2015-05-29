@@ -6,7 +6,7 @@ import touristgis.places.Place;
  *
  */
 public class Trail extends Place {
-  private static String trailIconImageLocation = "trail.png";
+  private static String trailIconImageLocation = "resources/trail.png";
   private String description;
 
   /**

@@ -5,14 +5,14 @@ import touristgis.places.Place;
 /**
  *
  */
-public class Landmark extends Place {
-  private static String landmarkIconImageLocation = "resources/landmark.png";
+public class Museum extends Place {
+  private static String landmarkIconImageLocation = "resources/museum.png";
   private String description;
 
   /**
      *
      */
-  public Landmark(String name, Double latitude, Double longitude, String description) {
+  public Museum(String name, Double latitude, Double longitude, String description) {
     super(name, landmarkIconImageLocation, latitude, longitude);
 
     this.description = description;

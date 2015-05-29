@@ -1,8 +1,7 @@
 package touristgis.places;
 
 import java.util.List;
-
-import javax.sql.rowset.Predicate;
+import java.util.function.Predicate;
 
 /**
  *
