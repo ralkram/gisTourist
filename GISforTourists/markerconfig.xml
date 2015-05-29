@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MarkerConfigs>
     <MarkerConfig PlaceType="Hospital">resources/hospital.png</MarkerConfig>
-    <MarkerConfig PlaceType="Institution">resources/restaurant.png</MarkerConfig>
+    <MarkerConfig PlaceType="Institution">resources/institution.png</MarkerConfig>
     <MarkerConfig PlaceType="PoliceStation">resources/policestation.png</MarkerConfig>
     <MarkerConfig PlaceType="Hotel">resources/hotel.png</MarkerConfig>
     <MarkerConfig PlaceType="Landmark">resources/landmark.png</MarkerConfig>

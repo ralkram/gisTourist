@@ -20,7 +20,7 @@ import touristgis.places.touristplaces.*;
 
 public class Main {
 
-  private static TouristMap testMap = new TouristMap("", "resources/sanfrancisco.tpk");
+  private static TouristMap testMap = new TouristMap("", "resources/sanfrancisco/sanfrancisco.tpk");
 
   public JComponent createUI() throws Exception {
     JComponent contentPane = testMap.getMapGUI();
@@ -47,7 +47,7 @@ public class Main {
 
     Thread.sleep(2000);
 
-    testMap.setPlacesLoader(new PlaceManager("resources/places.ser"));
+    testMap.setPlacesLoader(new PlaceManager("resources/sanfrancisco/places.ser"));
   }
 
   private JFrame createWindow() {
