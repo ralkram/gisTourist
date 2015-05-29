@@ -1,2 +1,0 @@
-# gisTourist
-SE Course Project
