@@ -6,13 +6,11 @@ import touristgis.places.Place;
  *
  */
 public class PoliceStation extends Place {
-  private static String policeStationIconImageLocation = "resources/policestation.png";
-
   /**
      *
      */
   public PoliceStation(String name, Double latitude, Double longitude) {
-    super(name, policeStationIconImageLocation, latitude, longitude);
+    super("PoliceStation", name, latitude, longitude);
   }
 
   @Override

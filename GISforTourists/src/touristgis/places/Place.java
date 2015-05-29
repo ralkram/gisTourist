@@ -1,13 +1,25 @@
 package touristgis.places;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 import com.esri.map.JMap;
 
@@ -21,21 +33,75 @@ public abstract class Place extends MapPoint implements Serializable {
     */
   private static final long serialVersionUID = 1L;
 
-  private final String iconImageLocation;
+  /**
+   * 
+   */
+  protected final String placeType;
 
+  /**
+   * 
+   */
   private String placeImageLocation;
 
+  /**
+   * 
+   */
   private String name;
 
   /**
+   * A dictionary mapping the placeType as key and markerImage as value.
+   */
+  protected static Dictionary<String, String> iconImageDictionary;
+
+  /**
+   * 
+   */
+  private static final String markerConfigurationPath = "markerconfig.xml";
+
+  static{
+    iconImageDictionary = new Hashtable<String, String>();
+    
+    try {
+      initializeMarkerImageDictionary();
+    }
+    catch (SAXException | IOException | ParserConfigurationException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+  /**
+   * @throws IOException 
+   * @throws SAXException 
+   * @throws ParserConfigurationException 
+   * 
+   */
+  private static void initializeMarkerImageDictionary() throws SAXException, IOException, ParserConfigurationException {
+    File fXmlFile = new File(markerConfigurationPath);
+    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+    Document doc = dBuilder.parse(fXmlFile);
+    
+    Element root = doc.getDocumentElement();
+    for(int i=0;i<root.getChildNodes().getLength();i++){
+      Node node = root.getChildNodes().item(i);
+      if(node.getNodeType() == Node.ELEMENT_NODE){
+        iconImageDictionary.put(
+            node.getAttributes().getNamedItem("PlaceType").getNodeValue(), 
+            node.getTextContent());
+      }
+    }
+  }
+
+  /**
+   * @param placeType TODO
    * @param name
-   * @param iconImageLocation
    * @param latitude
    * @param longitude
    */
-  public Place(String name, String iconImageLocation, Double latitude, Double longitude) {
+  public Place(String placeType, String name, Double latitude, Double longitude) {
     super(latitude, longitude);
-    this.iconImageLocation = iconImageLocation;
+    this.placeType = placeType;
+    this.placeImageLocation = "";
     this.name = name;
   }
 
@@ -70,7 +136,7 @@ public abstract class Place extends MapPoint implements Serializable {
     try {
 
       URL url = Place.class.getProtectionDomain().getCodeSource().getLocation();
-      imageMarker = ImageIO.read(new URL(url.toString() + iconImageLocation));
+      imageMarker = ImageIO.read(new URL(url.toString() + iconImageDictionary.get(placeType)));
     }
     catch (IOException e) {
       e.printStackTrace();

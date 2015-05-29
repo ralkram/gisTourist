@@ -6,14 +6,22 @@ import touristgis.places.Place;
  *
  */
 public class Restaurant extends Place {
-  private static String landmarkIconImageLocation = "resources/restaurant.png";
   private String description;
 
   /**
      *
      */
   public Restaurant(String name, Double latitude, Double longitude, String description) {
-    super(name, landmarkIconImageLocation, latitude, longitude);
+    super("Restaurant", name, latitude, longitude);
+
+    this.description = description;
+  }
+
+  /**
+  * Constructor for allowing restaurant subclass to set their placeType for a distinct marker icon.
+  */
+  Restaurant(String restaurantType, String name, Double latitude, Double longitude, String description) {
+    super(restaurantType, name, latitude, longitude);
 
     this.description = description;
   }

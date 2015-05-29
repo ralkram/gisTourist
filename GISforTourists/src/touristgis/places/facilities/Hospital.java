@@ -6,14 +6,13 @@ import touristgis.places.Place;
  *
  */
 public class Hospital extends Place {
-  private static String hospitalIconImageLocation = "resources/Hospital.png";
   private String description;
 
   /**
      *
      */
   public Hospital(String name, Double latitude, Double longitude, String description) {
-    super(name, hospitalIconImageLocation, latitude, longitude);
+    super("Hospital", name, latitude, longitude);
     this.description = description;
   }
 

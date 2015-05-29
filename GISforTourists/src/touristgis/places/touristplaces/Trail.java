@@ -6,14 +6,13 @@ import touristgis.places.Place;
  *
  */
 public class Trail extends Place {
-  private static String trailIconImageLocation = "resources/trail.png";
   private String description;
 
   /**
      *
      */
   public Trail(String name, Double latitude, Double longitude, String description) {
-    super(name, trailIconImageLocation, latitude, longitude);
+    super("Trail", name, latitude, longitude);
 
     this.description = description;
   }

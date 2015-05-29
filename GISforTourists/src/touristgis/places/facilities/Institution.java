@@ -6,8 +6,6 @@ import touristgis.places.Place;
  *
  */
 public class Institution extends Place {
-  private static String institutionIconImageLocation = "resources/institution.png";
-
   /**
      *
      */
@@ -19,7 +17,7 @@ public class Institution extends Place {
      *
      */
   public Institution(String name, Double latitude, Double longitude, String description, String specialization) {
-    super(name, institutionIconImageLocation, latitude, longitude);
+    super("Institution", name, latitude, longitude);
     this.description = description;
     this.specialization = specialization;
   }

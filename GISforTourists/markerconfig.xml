@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MarkerConfigs>
+    <MarkerConfig PlaceType="Hospital">resources/hospital.png</MarkerConfig>
+    <MarkerConfig PlaceType="Institution">resources/restaurant.png</MarkerConfig>
+    <MarkerConfig PlaceType="PoliceStation">resources/policestation.png</MarkerConfig>
+    <MarkerConfig PlaceType="Hotel">resources/hotel.png</MarkerConfig>
+    <MarkerConfig PlaceType="Landmark">resources/landmark.png</MarkerConfig>
+    <MarkerConfig PlaceType="Museum">resources/museum.png</MarkerConfig>
+    <MarkerConfig PlaceType="Restaurant">resources/restaurant.png</MarkerConfig>
+    <MarkerConfig PlaceType="Theatre">resources/theatre.png</MarkerConfig>
+    <MarkerConfig PlaceType="Trail">resources/trail.png</MarkerConfig>
+</MarkerConfigs>

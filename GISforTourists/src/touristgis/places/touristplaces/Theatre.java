@@ -6,14 +6,13 @@ import touristgis.places.Place;
  *
  */
 public class Theatre extends Place {
-  private static String landmarkIconImageLocation = "resources/theatre.png";
   private String description;
 
   /**
      *
      */
   public Theatre(String name, Double latitude, Double longitude, String description) {
-    super(name, landmarkIconImageLocation, latitude, longitude);
+    super("Theatre", name, latitude, longitude);
 
     this.description = description;
   }
