@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" >
+<html>
+<head>
+<title>Xul.fr - Demonstration of Tabs with Frames</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="tabs.css" />
+<style>
+
+body
+{ 
+    margin: 0px; 
+    font-size:100%;
+    font-family: arial, sans;
+    background-color: #FFF;
+}
+
+.legal
+{
+    text-align:center;
+    font-size: 80%;
+    color: #666;
+}
+
+.darken
+{
+	backround-color:#EEE;
+}
+
+</style>
+
+<script type="text/javascript">
+
+function loadit( element)
+{
+
+	var tabs=document.getElementById('tabs').getElementsByTagName("a");
+	for (var i=0; i < tabs.length; i++)
+	{
+		if(tabs[i].href == element.href) 
+			tabs[i].className="selected";
+		else
+			tabs[i].className="";
+	}
+}
+
+</script>
+
+
+</head>
+
+
+<body>
+<div id="content">
+<div id="tabs">
+<ul>
+     <li><a href="modeldoc/index.html" class="selected" target="mainFrame"  onclick="loadit(this)" >Model Documentation</a></li>
+     <li><a href="sourcedoc/index.html" class="selected" target="mainFrame"  onclick="loadit(this)" >Source Documentation</a></li>
+     <li><a href="repositoriesredirect.html" class="selected" target="mainFrame"  onclick="loadit(this)" >Git</a></li>
+</ul>
+</div>
+
+
+<p><br>
+  <br>
+</p>
+</div>
+</body>
+</html>
