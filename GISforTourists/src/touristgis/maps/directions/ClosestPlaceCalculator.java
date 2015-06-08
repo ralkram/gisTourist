@@ -6,15 +6,16 @@ import touristgis.places.MapPoint;
 import touristgis.places.Place;
 
 /**
- *
+ * Defines the method used to calculate the path from a location to the closest facility.
  */
 public interface ClosestPlaceCalculator {
 
   /**
-   * @param startLocation
-   * @param availableFacilities
-   * @param geodatabaseLocation
-   * @param observer
+   * Calculates the path from a location to the closest facility.
+   *
+   * @param startLocation The point of the start location.
+   * @param availableFacilities The list of facilities.
+   * @param geodatabaseLocation Geodatabase location path.
    */
-  public void solve(MapPoint startLocation, Set<Place> availableFacilities, String geodatabaseLocation, Object observer);
+  public void solve(MapPoint startLocation, Set<Place> availableFacilities, String geodatabaseLocation);
 }

@@ -7,6 +7,9 @@ import touristgis.maps.directions.RoutingCalculator;
 import touristgis.places.MapPoint;
 import touristgis.places.Place;
 
+/**
+ * Class used to calculate point-to-point or point-to-facility directions.
+ */
 public class DirectionsCalculatorImpl implements RoutingCalculator, ClosestPlaceCalculator {
   @Override
   public void solve(MapPoint startLocation, Set<Place> availableFacilities, String geodatabaseLocation, Object observer) {

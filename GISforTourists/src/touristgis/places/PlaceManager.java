@@ -13,23 +13,25 @@ import java.util.function.Predicate;
 import com.esri.map.JMap;
 
 /**
- *
+ * Class used to manage the places.
  */
 public class PlaceManager implements PlaceRepository, PlaceLoader {
   /**
-     *
-     */
+   * Location of the places.
+   */
   private String placesBinLocation;
 
   /**
-     *
-     */
+   * The list with places.
+   */
   private List<Place> places;
 
   /**
-   * @param placesBinLocation
-   * @throws IOException
-   * @throws ClassNotFoundException
+   * Class constructor.
+   *
+   * @param placesBinLocation The location of places.
+   * @throws IOException If an I/O error occurs while reading stream header.
+   * @throws ClassNotFoundException If the class of a serialized object cannot be found.
    */
   public PlaceManager(String placesBinLocation) throws ClassNotFoundException, IOException {
     this.placesBinLocation = placesBinLocation;
@@ -58,6 +60,13 @@ public class PlaceManager implements PlaceRepository, PlaceLoader {
     return returnedValue;
   }
 
+  /**
+   * Loads the places from external file.
+   *
+   * @return The list of places.
+   * @throws IOException If an I/O error occurs while reading stream header.
+   * @throws ClassNotFoundException If the class of a serialized object cannot be found.
+   */
   @SuppressWarnings("unchecked")
   private List<Place> readPlaces() throws IOException, ClassNotFoundException {
 
@@ -73,7 +82,7 @@ public class PlaceManager implements PlaceRepository, PlaceLoader {
     finally {
       input.close();
     }
-    
+
     return readPlaces;
   }
 }
