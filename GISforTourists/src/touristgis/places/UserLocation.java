@@ -35,7 +35,11 @@ public class UserLocation extends MapPoint {
   }
 
   /**
-   * Class contructor.
+   *
+   * Class constructor.
+   *
+   * @param latitude Latitude.
+   * @param longitude Longitude.
    */
   public UserLocation(Double latitude, Double longitude) {
     super(latitude, longitude);
