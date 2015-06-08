@@ -4,12 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import touristgis.maps.TouristMap;
-import touristgis.places.*;
 
 public class Main {
 
@@ -38,9 +38,9 @@ public class Main {
       }
     });
 
-    Thread.sleep(2000);
+    // Thread.sleep(2000);
 
-    testMap.setPlacesLoader(new PlaceManager("resources/sanfrancisco/places.ser"));
+    // testMap.setPlacesLoader(new PlaceManager("resources/sanfrancisco/places.ser"));
   }
 
   private JFrame createWindow() {
