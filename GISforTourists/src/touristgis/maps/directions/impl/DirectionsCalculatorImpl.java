@@ -12,12 +12,14 @@ import touristgis.places.Place;
  */
 public class DirectionsCalculatorImpl implements RoutingCalculator, ClosestPlaceCalculator {
   @Override
-  public void solve(MapPoint startLocation, Set<Place> availableFacilities, String geodatabaseLocation, Object observer) {
-
+  public void solve(MapPoint startLocation, Set<Place> availableFacilities, String geodatabaseLocation) {
+    // TODO Auto-generated method stub
+    
   }
 
   @Override
-  public void solve(Set<MapPoint> stops, String geodatabaseLocation, Object observer) {
-
+  public void solve(Set<MapPoint> stops, String geodatabaseLocation) {
+    // TODO Auto-generated method stub
+    
   }
 }
