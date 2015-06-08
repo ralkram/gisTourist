@@ -16,6 +16,9 @@ public class Institution extends Place {
      */
   private String specialization;
 
+  /**
+   * 
+   */
   private String description;
 
   /**
