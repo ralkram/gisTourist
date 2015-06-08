@@ -11,6 +11,12 @@ import touristgis.Main;
 import touristgis.places.PlaceLoader;
 import touristgis.places.PlaceManager;
 
+/**
+ * A tourist map factory implementing {@link MapFactory} interface that creates maps allocating the files based on the model shown
+ * in the DeploymentView.
+ *  @see <a href="http://ralkram.github.io/gisTourist/modeldoc/diagrams/File%20Relations_ul_AAAAAAFNoWPjLj62hDE=.svg">DeploymentViewFiles</a>
+ *
+ */
 public class TouristMapFactory implements MapFactory {
 
   @Override

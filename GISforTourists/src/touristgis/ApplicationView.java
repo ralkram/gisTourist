@@ -20,6 +20,10 @@ import touristgis.maps.TouristMapFactory;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**Main application view.
+ * Extends a JFrame and is run from main. Allows the user to select maps to view.
+ *
+ */
 public class ApplicationView extends JFrame {
 
   private JPanel contentPane;
@@ -28,15 +32,35 @@ public class ApplicationView extends JFrame {
   private DefaultListModel  listModel = new DefaultListModel();
   
 
+  /**
+   * Method for accessing the map list model.
+   * @return a list model allowing map names to be added.
+   */
   public DefaultListModel getListModel() {
     return listModel;
   }
 
-  private MapFactory mapFactory = new TouristMapFactory();
+  private MapFactory mapFactory;
+  /**
+   * Method for accessing the currently set map factory.
+   * @return the currently set map factory.
+   */
+  public MapFactory getMapFactory() {
+    return mapFactory;
+  }
+
+  /**
+   * Method for setting the map factory.
+   * @param mapFactory a map factory to set the ApplicationView to.
+   */
+  public void setMapFactory(MapFactory mapFactory) {
+    this.mapFactory = mapFactory;
+  }
+
   private JPanel mapPanel;
 
   /**
-   * Create the frame.
+   * Creates the frame.
    */
   public ApplicationView() {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

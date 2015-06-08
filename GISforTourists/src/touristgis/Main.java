@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import touristgis.maps.TouristMap;
+import touristgis.maps.TouristMapFactory;
 import touristgis.places.*;
 
 public class Main {
@@ -22,6 +23,9 @@ public class Main {
           ApplicationView frame = new ApplicationView();
           frame.getListModel().addElement("sanfrancisco");
           frame.getListModel().addElement("sandiego");
+          
+          frame.setMapFactory(new TouristMapFactory());
+          
           frame.setVisible(true);
         }
         catch (Exception e) {

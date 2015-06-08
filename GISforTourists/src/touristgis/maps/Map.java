@@ -3,16 +3,18 @@ package touristgis.maps;
 import javax.swing.JComponent;
 
 /**
- *
+ *Interface for a map object.
  */
 public interface Map {
   /**
-   * @return
+   * Allows the caller to get the GUI of the map as a {@link JComponent}. This separates the map operations logic from the calling view.
+   * @return a {@link JComponent} containing the map view.
    */
   public JComponent getMapGUI();
 
   /**
-   * @return
+   * Gets the name of the map.
+   * @return a string representing the map name.
    */
   public String getMapName();
 }

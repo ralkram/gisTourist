@@ -45,42 +45,18 @@ import com.esri.toolkit.overlays.DrawingOverlay;
 import com.esri.toolkit.overlays.DrawingOverlay.DrawingMode;
 
 /**
- *
+ * Implementation of the {@link Map} interface, for modeling tourist maps.
  */
 public class TouristMap implements Map {
-  /**
-     *
-     */
+  
   private String geodatabaseLocation;
-
-  /**
-     *
-     */
   private String mapTilePackageLocation;
-
-  /**
-     *
-     */
   private ClosestPlaceCalculator directionsClosestPlaceCalculator;
-
-  /**
-     *
-     */
   private RoutingCalculator directionsRoutingCalculator;
-
-  /**
-     *
-     */
   private PlaceRepository placesRepository;
-
-  /**
-     *
-     */
+  
   private PlaceLoader placesLoader;
-
-  /**
-   *
-   */
+  
   private JMap map;
 
   private JComponent contentPane;
@@ -94,8 +70,9 @@ public class TouristMap implements Map {
   private int numStops = 0;
 
   /**
-   * @param geodatabaseLocation
-   * @param mapTilePackageLocation
+   * Constructor for the TouristMap.
+   * @param geodatabaseLocation required parameter specifying the location of the geodatabase.
+   * @param mapTilePackageLocation required parameter specifying the location of the map tile package.
    */
   public TouristMap(String geodatabaseLocation, String mapTilePackageLocation) {
     this.geodatabaseLocation = geodatabaseLocation;
@@ -106,7 +83,9 @@ public class TouristMap implements Map {
   }
 
   /**
-   * @param arg
+   * Method for setting the {@link PlaceLoader} of the map. The {@link PlaceLoader} will be used for populating the map with points.
+   * The map is populated upon setting this property.
+   * @param arg an object implementing the {@link PlaceLoader} interface.
    */
   public void setPlacesLoader(PlaceLoader arg) {
     this.placesLoader = arg;
@@ -116,21 +95,24 @@ public class TouristMap implements Map {
   }
 
   /**
-   * @param arg
+   * Method for setting the {@link PlaceRepository} of the map. 
+   * @param arg an object implementing the {@link PlaceRepository} interface.
    */
   public void setPlacesRepository(PlaceRepository arg) {
     this.placesRepository = arg;
   }
 
   /**
-   * @param arg
+   * Method for setting the {@link RoutingCalculator} of the map. This will be used by the TouristMap to compute routes between points. 
+   * @param arg an object implementing the {@link RoutingCalculator} interface.
    */
   public void setDirectionsRoutingCalculator(RoutingCalculator arg) {
     this.directionsRoutingCalculator = arg;
   }
 
   /**
-   * @param arg
+   * Method for setting the {@link ClosestPlaceCalculator} of the map. This will be used by the TouristMap to compute the closest facility to a point. 
+   * @param arg an object implementing the {@link ClosestPlaceCalculator} interface.
    */
   public void setDirectionsClosestPlaceCalculator(ClosestPlaceCalculator arg) {
     this.directionsClosestPlaceCalculator = arg;
@@ -152,7 +134,7 @@ public class TouristMap implements Map {
   }
 
   /**
-   * Creates the map, sets the initial extent.
+   * Creates an ArcGIS map, sets the initial values and layers.
    *
    * @return a map.
    */
@@ -191,6 +173,11 @@ public class TouristMap implements Map {
     return jMap;
   }
 
+  /**
+   * Creates the toolbar providing options for working with the map.
+   * @param drawingOverlay the overlay on which the options will be working on.
+   * @return a {@link JComponent} containing the toolbar.
+   */
   private JToolBar createToolBar(final DrawingOverlay drawingOverlay) {
     JToolBar toolBarNew = new JToolBar();
     toolBarNew.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -222,7 +209,7 @@ public class TouristMap implements Map {
     routeButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        doRouting(geodatabaseLocation);
+        doRouting();
       }
     });
     toolBarNew.add(routeButton);
@@ -242,7 +229,10 @@ public class TouristMap implements Map {
     return toolBarNew;
   }
 
-  private void doRouting(String geodatabaseLocation) {
+  /**
+   * Handles the routing request.
+   */
+  private void doRouting() {
     RouteResult result = null;
     RouteParameters parameters = null;
 
@@ -264,6 +254,10 @@ public class TouristMap implements Map {
     }
   }
 
+  /**
+ * Shows a routing result.
+ * @param result the result to be shown.
+ */
   private void showResult(RouteResult result) {
     if (result != null) {
       // display the top route on the map as a graphic
@@ -274,6 +268,11 @@ public class TouristMap implements Map {
     }
   }
 
+  /**
+   * A method we use to wrap a string in html code. Called by on interface error display.
+   * @param str the string.
+   * @return the html string.
+   */
   private String wrap(String str) {
     // create a HTML string that wraps text when longer
     return "<html><p style='width:200px;'>" + str + "</html>";
