@@ -38,6 +38,7 @@ import com.esri.core.tasks.na.RouteResult;
 import com.esri.core.tasks.na.RouteTask;
 import com.esri.map.GraphicsLayer;
 import com.esri.map.JMap;
+import com.esri.map.LayerList;
 import com.esri.toolkit.overlays.DrawingCompleteEvent;
 import com.esri.toolkit.overlays.DrawingCompleteListener;
 import com.esri.toolkit.overlays.DrawingOverlay;
@@ -95,7 +96,6 @@ public class TouristMap implements Map {
   private JToggleButton toggleButtonAddStop;
   private JButton routeButton;
   private JButton resetButton;
-  private int selectedMapId = 0;
   private int numStops = 0;
 
   // -------------------------
@@ -109,13 +109,10 @@ public class TouristMap implements Map {
   public TouristMap(String geodatabaseLocation, String mapTilePackageLocation) {
     this.geodatabaseLocation = geodatabaseLocation;
     this.mapTilePackageLocation = mapTilePackageLocation;
+    
 
-    // map = new JMap();
-    //
-    // final ArcGISLocalTiledLayer baseLayer = new ArcGISLocalTiledLayer(mapTilePackageLocation);
-    //
-    // LayerList layers = map.getLayers();
-    // layers.add(baseLayer);
+    map = createMap();
+    toolBar = createToolBar(myDrawingOverlay);
   }
 
   /**
@@ -153,20 +150,8 @@ public class TouristMap implements Map {
   public JComponent getMapGUI() {
     contentPane = new JPanel(new BorderLayout());
 
-    // create components
-    map = createMap(selectedMapId);
-    toolBar = createToolBar(myDrawingOverlay);
-
-    // add them to our content pane
     contentPane.add(map, BorderLayout.CENTER);
     contentPane.add(toolBar, BorderLayout.NORTH);
-
-    try {
-      setPlacesLoader(new PlaceManager("resources/sanfrancisco/places.ser"));
-    }
-    catch (ClassNotFoundException | IOException e) {
-      e.printStackTrace();
-    }
 
     return contentPane;
   }
@@ -181,12 +166,13 @@ public class TouristMap implements Map {
    *
    * @return a map.
    */
-  private JMap createMap(int mapId) {
-    final String[] cities = { "resources/sandiego/SanDiego.tpk", "resources/sanfrancisco/SanFrancisco.tpk" };
+  private JMap createMap() {
     final JMap jMap = new JMap();
     jMap.setShowingEsriLogo(false);
 
-    ArcGISLocalTiledLayer tiledLayer = new ArcGISLocalTiledLayer(cities[mapId]);
+
+   
+    ArcGISLocalTiledLayer tiledLayer = new ArcGISLocalTiledLayer(mapTilePackageLocation);
     jMap.getLayers().add(tiledLayer);
     jMap.setExtent(new Envelope(-13054452, 3847753, -13017762, 3866957.78));
 
@@ -222,36 +208,6 @@ public class TouristMap implements Map {
     toolBarNew.setLayout(new FlowLayout(FlowLayout.CENTER));
     toolBarNew.setFloatable(false);
 
-    final String[] cities = { "San Diego", "San Francisco" };
-    citiesList = new JComboBox<>(cities);
-    citiesList.setSelectedIndex(selectedMapId);
-    citiesList.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        @SuppressWarnings("unchecked")
-        JComboBox<String> citiesList = (JComboBox<String>) e.getSource();
-        selectedMapId = citiesList.getSelectedIndex();
-
-        contentPane.remove(map);
-        contentPane.remove(toolBarNew);
-        map = createMap(citiesList.getSelectedIndex());
-        JToolBar toolbarTemp = createToolBar(myDrawingOverlay);
-        contentPane.add(map, BorderLayout.CENTER);
-        contentPane.add(toolbarTemp, BorderLayout.NORTH);
-        contentPane.validate();
-        contentPane.repaint();
-        resetButton.doClick();
-
-        try {
-          setPlacesLoader(new PlaceManager("resources/sanfrancisco/places.ser"));
-        }
-        catch (ClassNotFoundException | IOException exception) {
-          exception.printStackTrace();
-        }
-      }
-    });
-    toolBarNew.add(citiesList);
-
     // stop
     toggleButtonAddStop = new JToggleButton(" Add a stop ");
     toggleButtonAddStop.setFocusPainted(false);
@@ -278,7 +234,7 @@ public class TouristMap implements Map {
     routeButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        doRouting(citiesList.getSelectedIndex());
+        doRouting(geodatabaseLocation);
       }
     });
     toolBarNew.add(routeButton);
@@ -298,14 +254,12 @@ public class TouristMap implements Map {
     return toolBarNew;
   }
 
-  private void doRouting(int cityGeoDatabaseId) {
-    final String[] citiesGeoDatabase = { "resources/sandiego/Routing/RuntimeSanDiego.geodatabase",
-        "resources/sanfrancisco/Routing/RuntimeSanFrancisco.geodatabase" };
+  private void doRouting(String geodatabaseLocation) {
     RouteResult result = null;
     RouteParameters parameters = null;
 
     try {
-      RouteTask task = RouteTask.createLocalRouteTask(citiesGeoDatabase[cityGeoDatabaseId], "Streets_ND");
+      RouteTask task = RouteTask.createLocalRouteTask(geodatabaseLocation, "Streets_ND");
       parameters = task.retrieveDefaultRouteTaskParameters();
       parameters.setOutSpatialReference(map.getSpatialReference());
       stops.setSpatialReference(map.getSpatialReference());
