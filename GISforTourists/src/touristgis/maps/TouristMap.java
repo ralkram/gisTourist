@@ -83,24 +83,15 @@ public class TouristMap implements Map {
    */
   private JMap map;
 
-  // -------------------------
-  // New
-  // -------------------------
-  // private JMap map;
   private JComponent contentPane;
   private NAFeaturesAsFeature stops = new NAFeaturesAsFeature();
   private GraphicsLayer graphicsLayer;
   private DrawingOverlay myDrawingOverlay;
   private JToolBar toolBar;
-  private JComboBox<String> citiesList;
   private JToggleButton toggleButtonAddStop;
   private JButton routeButton;
   private JButton resetButton;
   private int numStops = 0;
-
-  // -------------------------
-  // New
-  // -------------------------
 
   /**
    * @param geodatabaseLocation
@@ -109,7 +100,6 @@ public class TouristMap implements Map {
   public TouristMap(String geodatabaseLocation, String mapTilePackageLocation) {
     this.geodatabaseLocation = geodatabaseLocation;
     this.mapTilePackageLocation = mapTilePackageLocation;
-    
 
     map = createMap();
     toolBar = createToolBar(myDrawingOverlay);
@@ -170,8 +160,6 @@ public class TouristMap implements Map {
     final JMap jMap = new JMap();
     jMap.setShowingEsriLogo(false);
 
-
-   
     ArcGISLocalTiledLayer tiledLayer = new ArcGISLocalTiledLayer(mapTilePackageLocation);
     jMap.getLayers().add(tiledLayer);
     jMap.setExtent(new Envelope(-13054452, 3847753, -13017762, 3866957.78));

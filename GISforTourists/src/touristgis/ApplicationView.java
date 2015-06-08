@@ -34,28 +34,13 @@ public class ApplicationView extends JFrame {
 
   private MapFactory mapFactory = new TouristMapFactory();
   private JPanel mapPanel;
-  /**
-   * Launch the application.
-   */
-  public static void main(String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        try {
-          ApplicationView frame = new ApplicationView();
-          frame.setVisible(true);
-        }
-        catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    });
-  }
 
   /**
    * Create the frame.
    */
   public ApplicationView() {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setExtendedState(JFrame.MAXIMIZED_BOTH);
     setBounds(100, 100, 450, 300);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
