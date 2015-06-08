@@ -3,20 +3,13 @@ package touristgis;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import touristgis.maps.TouristMap;
 import touristgis.places.*;
-import touristgis.places.facilities.*;
-import touristgis.places.touristplaces.*;
 
 public class Main {
 

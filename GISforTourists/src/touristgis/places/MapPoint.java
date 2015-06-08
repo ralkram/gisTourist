@@ -9,6 +9,11 @@ import com.esri.map.JMap;
  */
 public abstract class MapPoint implements Serializable {
   /**
+   * 
+   */
+  private static final long serialVersionUID = -1203646979347248360L;
+
+  /**
      *
      */
   public MapPoint() {

@@ -6,6 +6,10 @@ import touristgis.places.Place;
  *
  */
 public class Theatre extends Place {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 7819598493894841272L;
   private String description;
 
   /**

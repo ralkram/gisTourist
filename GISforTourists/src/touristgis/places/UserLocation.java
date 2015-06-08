@@ -12,6 +12,13 @@ import com.esri.map.JMap;
  *
  */
 public class UserLocation extends MapPoint {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 621044583870669382L;
+  /**
+   * 
+   */
   private static BufferedImage imageMarker;
   private static String iconImageLocation = "userimg.png";
 

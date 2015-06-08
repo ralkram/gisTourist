@@ -6,11 +6,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.Set;
-
 import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

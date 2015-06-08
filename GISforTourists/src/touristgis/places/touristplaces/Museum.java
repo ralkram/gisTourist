@@ -6,6 +6,10 @@ import touristgis.places.Place;
  *
  */
 public class Museum extends Place {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 189053455876262720L;
   private String description;
 
   /**

@@ -6,6 +6,10 @@ import touristgis.places.Place;
  *
  */
 public class Restaurant extends Place {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -1141995444227108171L;
   private String description;
 
   /**

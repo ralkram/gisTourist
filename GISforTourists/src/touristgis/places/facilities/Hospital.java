@@ -6,6 +6,10 @@ import touristgis.places.Place;
  *
  */
 public class Hospital extends Place {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -3105116371840046670L;
   private String description;
 
   /**
